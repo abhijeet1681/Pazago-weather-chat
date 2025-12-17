@@ -53,7 +53,8 @@ localStorage (for persistent chat history)
 ⚙️ Setup Instructions
 
 1️⃣ Clone the Repository
-git clone <YOUR_GITHUB_REPOSITORY_URL>
+git clone https://github.com/abhijeet1681/Pazago-weather-chat.git
+
 cd pazago-weather-chat
 
 2️⃣ Install Dependencies
@@ -74,27 +75,37 @@ The Weather Agent API is configured in:  src/services/weatherApi.js
 🧠 Design Decisions
 
 Used localStorage to persist chat history without backend dependency.
+
 Auto-create a new chat when a user sends a message and no chat exists.
+
 Disabled input during API calls to prevent duplicate requests.
+
 Minimal UI changes to strictly follow the assignment design guidelines.
+
 Dark mode implemented using Tailwind’s dark class for simplicity and performance.
 
 🧪 Sample Test Scenarios
 
 Ask: "What's the weather in Mumbai today?"
+
 Refresh the page → chat history remains
+
 Delete a chat → refresh → deleted chat does not reappear
+
 Disconnect internet → error message is displayed
+
 Switch to dark mode → refresh → preference persists
 
 👤 Author
 
 Full Name: Abhijeet Jadhav
+
 Role: Frontend Engineer
 
 📩 Submission Details
 
 GitHub Repository: <a href="https://github.com/abhijeet1681/Pazago-weather-chat.git"></a>
+
 <a href="https://pazago-weather-chat-nu.vercel.app/"><strong>➥ Live Demo</strong></a>
 
 This project fully satisfies the assignment requirements and focuses on usability, performance, and clean architecture.
