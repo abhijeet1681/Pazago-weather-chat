@@ -1,16 +1,118 @@
-# React + Vite
+🌤️ Weather Agent Chat Interface
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+📌 Overview
 
-Currently, two official plugins are available:
+This project is a responsive chat interface that allows users to interact with a Weather Agent through a streaming API.
+The application focuses on clean UI, smooth user experience, persistent chat history, and robust error handling, following the specifications provided in the assignment.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🚀 Features
 
-## React Compiler
+*Core Functionality
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Chat interface with message input and send button
+User messages displayed on the right, agent responses on the left
+Auto-scroll to latest message
+Message timestamps
+Suggested weather-related questions
+Keyboard support (Enter to send)
+API Integration
+Integrated with Weather Agent streaming API
+Loading / typing indicator during API calls
+Disabled input while API request is in progress
+Proper error handling with user-friendly messages
 
-## Expanding the ESLint configuration
+*Message Management
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Conversation history stored in localStorage
+Multiple chat threads supported
+Chat history persists after page refresh
+Ability to start a new chat
+Ability to delete a chat (persistent deletion)
+
+*UI / UX
+
+Clean and modern UI
+Responsive design (mobile, tablet, desktop)
+Minimum width support: 320px
+Distinct styling for user vs agent messages
+Smooth scrolling and transitions
+Dark / Light theme toggle (persistent)
+
+🛠️ Tech Stack
+
+React (Vite)
+Tailwind CSS
+JavaScript
+Fetch API
+localStorage (for persistent chat history)
+
+📁 Project Structure
+src/
+│
+├── components/
+│   ├── ChatContainer.jsx
+│   ├── ChatMessage.jsx
+│   ├── ChatInput.jsx
+│   ├── SuggestedQuestions.jsx
+│   └── ChatHistory.jsx
+│
+├── hooks/
+│   ├── useChat.js
+│   └── useTheme.js
+│
+├── services/
+│   └── weatherApi.js
+│
+├── App.jsx
+├── main.jsx
+└── index.css
+
+
+⚙️ Setup Instructions
+
+1️⃣ Clone the Repository
+git clone <YOUR_GITHUB_REPOSITORY_URL>
+cd pazago-weather-chat
+
+2️⃣ Install Dependencies
+npm install
+
+3️⃣ Run the Application Locally
+npm run dev
+
+🌐 Deployment
+The application is deployed using Vercel.
+
+Live Demo: https://pazago-weather-chat-nu.vercel.app/
+
+🔑 API Configuration
+
+The Weather Agent API is configured in:  src/services/weatherApi.js
+
+🧠 Design Decisions
+
+Used localStorage to persist chat history without backend dependency.
+Auto-create a new chat when a user sends a message and no chat exists.
+Disabled input during API calls to prevent duplicate requests.
+Minimal UI changes to strictly follow the assignment design guidelines.
+Dark mode implemented using Tailwind’s dark class for simplicity and performance.
+
+🧪 Sample Test Scenarios
+
+Ask: "What's the weather in Mumbai today?"
+Refresh the page → chat history remains
+Delete a chat → refresh → deleted chat does not reappear
+Disconnect internet → error message is displayed
+Switch to dark mode → refresh → preference persists
+
+👤 Author
+
+Full Name: Abhijeet Jadhav
+Role: Frontend Engineer
+
+📩 Submission Details
+
+GitHub Repository: https://github.com/abhijeet1681/Pazago-weather-chat.git
+Live Demo: https://pazago-weather-chat-nu.vercel.app/
+
+This project fully satisfies the assignment requirements and focuses on usability, performance, and clean architecture.
