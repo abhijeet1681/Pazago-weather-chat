@@ -16,7 +16,7 @@ export async function sendToWeatherAgent(message) {
         temperature: 0.5,
         topP: 1,
         runtimeContext: {},
-        threadId: "YOUR_COLLEGE_ROLL_NUMBER",
+        threadId: "2024510021",
         resourceId: "weatherAgent",
       }),
     }
