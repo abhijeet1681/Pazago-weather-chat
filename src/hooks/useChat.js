@@ -4,27 +4,30 @@ import { sendToWeatherAgent } from "../services/weatherApi";
 const STORAGE_KEY = "weather_chat_history";
 
 export default function useChat() {
-  const [threads, setThreads] = useState([]);
-  const [activeThreadId, setActiveThreadId] = useState(null);
+  // ✅ Load threads from localStorage ONCE
+  const [threads, setThreads] = useState(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // ✅ Set active thread safely
+  const [activeThreadId, setActiveThreadId] = useState(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    const parsed = saved ? JSON.parse(saved) : [];
+    return parsed.length > 0 ? parsed[0].id : null;
+  });
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Load history on first load
-  useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-    setThreads(saved);
-    if (saved.length) {
-      setActiveThreadId(saved[0].id);
-    }
-  }, []);
-
-  // Persist history
+  // ✅ Persist chats whenever threads change
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(threads));
   }, [threads]);
 
   const activeThread = threads.find(t => t.id === activeThreadId);
 
+  // ✅ Manual new chat
   const startNewChat = () => {
     const newThread = {
       id: Date.now(),
@@ -32,37 +35,42 @@ export default function useChat() {
       messages: [],
       createdAt: Date.now(),
     };
+
     setThreads(prev => [newThread, ...prev]);
     setActiveThreadId(newThread.id);
   };
 
+  // ✅ Delete chat (persistent)
   const deleteChat = (threadId) => {
     setThreads(prev => {
       const updated = prev.filter(t => t.id !== threadId);
 
-      // If deleted chat was active
+      // If active chat deleted, switch safely
       if (threadId === activeThreadId) {
-        if (updated.length > 0) {
-          setActiveThreadId(updated[0].id);
-        } else {
-          // No chats left → create new one
-          const newThread = {
-            id: Date.now(),
-            title: "New chat",
-            messages: [],
-            createdAt: Date.now(),
-          };
-          setActiveThreadId(newThread.id);
-          return [newThread];
-        }
+        setActiveThreadId(updated.length ? updated[0].id : null);
       }
 
       return updated;
     });
   };
 
+  // ✅ SEND MESSAGE (AUTO-CREATE CHAT IF NONE EXISTS)
   const sendMessage = async (text) => {
-    if (!activeThread) return;
+    let threadId = activeThreadId;
+
+    // 🔥 KEY FIX: auto-create chat if none exists
+    if (!threadId) {
+      const newThread = {
+        id: Date.now(),
+        title: text.slice(0, 30),
+        messages: [],
+        createdAt: Date.now(),
+      };
+
+      setThreads(prev => [newThread, ...prev]);
+      setActiveThreadId(newThread.id);
+      threadId = newThread.id;
+    }
 
     const userMessage = {
       role: "user",
@@ -70,12 +78,12 @@ export default function useChat() {
       timestamp: Date.now(),
     };
 
+    // Add user message
     setThreads(prev =>
       prev.map(t =>
-        t.id === activeThreadId
+        t.id === threadId
           ? {
               ...t,
-              title: t.messages.length === 0 ? text.slice(0, 30) : t.title,
               messages: [...t.messages, userMessage],
             }
           : t
@@ -94,15 +102,19 @@ export default function useChat() {
         timestamp: Date.now(),
       };
 
+      // Add agent message
       setThreads(prev =>
         prev.map(t =>
-          t.id === activeThreadId
-            ? { ...t, messages: [...t.messages, agentMessage] }
+          t.id === threadId
+            ? {
+                ...t,
+                messages: [...t.messages, agentMessage],
+              }
             : t
         )
       );
     } catch {
-      setError("Failed to fetch response.");
+      setError("Failed to fetch response. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -115,7 +127,7 @@ export default function useChat() {
     setActiveThreadId,
     sendMessage,
     startNewChat,
-    deleteChat,   // 👈 NEW
+    deleteChat,
     loading,
     error,
   };
