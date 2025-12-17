@@ -48,7 +48,7 @@ localStorage (for persistent chat history)
 
 📁 Project Structure
 
-![Project Structure](Screenshot 2025-12-17 220329.png "Structure Demo")
+![Project Structure](Expensess.png)
 
 ⚙️ Setup Instructions
 
