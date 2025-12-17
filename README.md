@@ -47,26 +47,8 @@ Fetch API
 localStorage (for persistent chat history)
 
 📁 Project Structure
-src/
-│
-├── components/
-│   ├── ChatContainer.jsx
-│   ├── ChatMessage.jsx
-│   ├── ChatInput.jsx
-│   ├── SuggestedQuestions.jsx
-│   └── ChatHistory.jsx
-│
-├── hooks/
-│   ├── useChat.js
-│   └── useTheme.js
-│
-├── services/
-│   └── weatherApi.js
-│
-├── App.jsx
-├── main.jsx
-└── index.css
 
+![Project Structure](Screenshot 2025-12-17 220329.png "Structure Demo")
 
 ⚙️ Setup Instructions
 
@@ -83,7 +65,7 @@ npm run dev
 🌐 Deployment
 The application is deployed using Vercel.
 
-Live Demo: https://pazago-weather-chat-nu.vercel.app/
+<a href="https://pazago-weather-chat-nu.vercel.app/"><strong>➥ Live Demo</strong></a>
 
 🔑 API Configuration
 
@@ -112,7 +94,7 @@ Role: Frontend Engineer
 
 📩 Submission Details
 
-GitHub Repository: https://github.com/abhijeet1681/Pazago-weather-chat.git
-Live Demo: https://pazago-weather-chat-nu.vercel.app/
+GitHub Repository: <a href="https://github.com/abhijeet1681/Pazago-weather-chat.git"></a>
+<a href="https://pazago-weather-chat-nu.vercel.app/"><strong>➥ Live Demo</strong></a>
 
 This project fully satisfies the assignment requirements and focuses on usability, performance, and clean architecture.
