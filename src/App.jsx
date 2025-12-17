@@ -1,11 +1,9 @@
 import ChatContainer from "./components/ChatContainer";
 
-function App() {
+export default function App() {
   return (
-    <div className="min-h-screen bg-white flex justify-center items-center">
+    <div className="min-h-screen bg-white flex items-center justify-center">
       <ChatContainer />
     </div>
   );
 }
-
-export default App;

@@ -3,20 +3,22 @@ const questions = [
   "Will it rain tomorrow in Pune?",
   "What's the temperature in Delhi right now?",
   "Show me the 7-day weather forecast for Bangalore.",
-  "Is it going to be hot this weekend in Chennai?"
+  "Is it going to be hot this weekend in Chennai?",
 ];
 
 export default function SuggestedQuestions({ onSelect }) {
   return (
     <div className="px-6 py-3 space-y-2">
-      {questions.map((question, index) => (
+      {questions.map((q, i) => (
         <button
-          key={index}
-          onClick={() => onSelect(question)}
-          className="w-full text-left border rounded-lg px-4 py-2 text-sm 
-                     hover:bg-gray-50 transition"
+          key={i}
+          onClick={() => onSelect(q)}
+          className="w-full text-left border rounded-lg px-4 py-2 text-sm
+                     hover:bg-gray-50 dark:hover:bg-gray-800
+                     text-black dark:text-white
+                     border-gray-300 dark:border-gray-600 transition"
         >
-          {question}
+          {q}
         </button>
       ))}
     </div>

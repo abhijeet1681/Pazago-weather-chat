@@ -22,5 +22,7 @@ export async function sendToWeatherAgent(message) {
     }
   );
 
+  if (!response.ok) throw new Error("API Error");
+
   return response.text();
 }
