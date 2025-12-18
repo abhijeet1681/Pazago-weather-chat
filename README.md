@@ -5,6 +5,17 @@
 This project is a responsive chat interface that allows users to interact with a Weather Agent through a streaming API.
 The application focuses on clean UI, smooth user experience, persistent chat history, and robust error handling, following the specifications provided in the assignment.
 
+
+### Demo Screeshots
+
+![Portfolio Desktop Demo](hotel.png "Desktop Demo")
+
+
+### POSTMAN API TESTING
+
+![API TESTING](Screenshot.png "API Testing")
+
+
 🚀 Features
 
 *Core Functionality
