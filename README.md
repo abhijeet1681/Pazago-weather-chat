@@ -8,7 +8,7 @@ The application focuses on clean UI, smooth user experience, persistent chat his
 
 ### Demo Screeshots
 
-![Portfolio Desktop Demo](hotel.png "Desktop Demo")
+![Weather Demo](Pazago.png "Weather Demo")
 
 
 ### POSTMAN API TESTING
